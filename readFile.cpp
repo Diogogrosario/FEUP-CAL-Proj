@@ -7,32 +7,14 @@
 #include <fstream>
 #include <string>
 
-void exercicio3()
+
+GraphViewer * gv;
+
+void readEdgeFile(string name)
 {
     ifstream edgeFile;
-    ifstream nodeFile;
 
-    GraphViewer * gv = new GraphViewer(600, 600, false);
-    gv->createWindow(600, 600);
-    gv->defineVertexColor("blue");
-    gv->defineEdgeColor("black");
-
-
-    edgeFile.open("../resources/mapa1/arestas.txt");
-    nodeFile.open("../resources/mapa1/nos.txt");
-
-    while (!nodeFile.eof()) {
-        string line;
-        int id, x, y;
-
-        getline(nodeFile, line, ';');
-        id = stoi(line);
-        getline(nodeFile, line, ';');
-        x = stoi(line);
-        getline(nodeFile, line, '\n');
-        y = stoi(line);
-        gv->addNode(id, x, y);
-    }
+    edgeFile.open(name.c_str());
 
     while (!edgeFile.eof()) {
         string line;
@@ -49,7 +31,38 @@ void exercicio3()
     }
     gv->rearrange();
     edgeFile.close();
+    return;
+}
+
+void readNodeFile(string name){
+
+    ifstream nodeFile;
+
+    nodeFile.open(name.c_str());
+
+    while (!nodeFile.eof()) {
+        string line;
+        int id, x, y;
+
+        getline(nodeFile, line, ';');
+        id = stoi(line);
+        getline(nodeFile, line, ';');
+        x = stoi(line);
+        getline(nodeFile, line, '\n');
+        y = stoi(line);
+
+        gv->addNode(id, x, y);
+    }
+
+    gv->rearrange();
     nodeFile.close();
     return;
 
+}
+
+void initGraph(){
+    gv = new GraphViewer(600, 600, false);
+    gv->createWindow(1000, 1000);
+    gv->defineVertexColor("blue");
+    gv->defineEdgeColor("black");
 }

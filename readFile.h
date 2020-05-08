@@ -5,7 +5,10 @@
 #ifndef FICHAJUNG_READFILE_H
 #define FICHAJUNG_READFILE_H
 
+void readEdgeFile(string name);
 
-void exercicio3();
+void readNodeFile(string name);
+
+void initGraph();
 
 #endif //FICHAJUNG_READFILE_H
