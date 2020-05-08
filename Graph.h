@@ -40,6 +40,7 @@ public:
 	T getInfo() const;
 	double getDist() const;
 	Vertex *getPath() const;
+	vector<Edge<T>> getAdj();
 
 	bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
 	friend class Graph<T>;
@@ -121,6 +122,11 @@ public:
 	vector<T> getfloydWarshallPath(const T &origin, const T &dest) const;   //TODO...
 
 };
+
+template<class T>
+vector<Edge<T>> Vertex<T>::getAdj() {
+    return adj;
+}
 
 template <class T>
 int Graph<T>::getNumVertex() const {

@@ -6,8 +6,8 @@
 #include <graphviewer.h>
 #include "Graph.h"
 #include <fstream>
-#include <string>
 #include "Node.h"
+#include <string>
 
 
 GraphViewer * gv;
@@ -93,6 +93,8 @@ void initGraph(){
     gv->defineEdgeColor("black");
 
 }
+
+
 
 double dist(Node n1, Node n2){
     double distX = 0;
