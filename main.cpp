@@ -2,6 +2,8 @@
 #include <graphviewer.h>
 #include "readFile.h"
 
+
+
 int main() {
     initGraph();
 	readNodeFile("../nodes.txt");
