@@ -4,8 +4,8 @@
 
 int main() {
     initGraph();
-	readNodeFile("../nos.txt");
-	readEdgeFile("../arestas.txt");
+	readNodeFile("../nodes.txt");
+	readEdgeFile("../edges.txt");
 
 	getchar();
 	return 0;

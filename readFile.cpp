@@ -13,6 +13,7 @@ GraphViewer * gv;
 void readEdgeFile(string name)
 {
     ifstream edgeFile;
+    static int id = 0;
 
     edgeFile.open(name.c_str());
 
@@ -20,14 +21,18 @@ void readEdgeFile(string name)
         string line;
         int id, n1, n2;
 
-        getline(edgeFile, line, ';');
-        id = stoi(line);
-        getline(edgeFile, line, ';');
+        getline(edgeFile, line, '(');
+
+        getline(edgeFile, line, ',');
         n1 = stoi(line);
-        getline(edgeFile, line, '\n');
+        getline(edgeFile, line, ')');
         n2 = stoi(line);
 
+
+        getline(edgeFile, line, '\n');
+
         gv->addEdge(id, n1, n2, EdgeType::UNDIRECTED);
+        id++;
     }
     gv->rearrange();
     edgeFile.close();
@@ -44,12 +49,16 @@ void readNodeFile(string name){
         string line;
         int id, x, y;
 
-        getline(nodeFile, line, ';');
+        getline(nodeFile, line, '(');
+
+        getline(nodeFile, line, ',');
         id = stoi(line);
-        getline(nodeFile, line, ';');
+        getline(nodeFile, line, ',');
         x = stoi(line);
-        getline(nodeFile, line, '\n');
+        getline(nodeFile, line, ')');
         y = stoi(line);
+
+        getline(nodeFile, line, '\n');
 
         gv->addNode(id, x, y);
     }
@@ -61,8 +70,9 @@ void readNodeFile(string name){
 }
 
 void initGraph(){
-    gv = new GraphViewer(600, 600, false);
+    gv = new GraphViewer(1000, 1000, false);
     gv->createWindow(1000, 1000);
     gv->defineVertexColor("blue");
     gv->defineEdgeColor("black");
+
 }
