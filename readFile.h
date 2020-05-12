@@ -5,10 +5,15 @@
 #ifndef FICHAJUNG_READFILE_H
 #define FICHAJUNG_READFILE_H
 
+#include <vector>
+#include "Node.h"
+
 void readEdgeFile(string name);
 
 void readNodeFile(string name);
 
 void initGraph();
+
+void paintPath(vector<Node> path,string color);
 
 #endif //FICHAJUNG_READFILE_H

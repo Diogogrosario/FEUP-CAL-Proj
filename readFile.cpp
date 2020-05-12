@@ -103,3 +103,10 @@ double dist(Node n1, Node n2){
     distY = pow(n1.getY()-n2.getY(),2);
     return sqrt(distX+distY);
 }
+
+
+void paintPath(vector<Node> path,string color){
+    for(Node n:path){
+        gv->setVertexColor(n.getID(),color);
+    }
+}
