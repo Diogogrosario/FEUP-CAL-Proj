@@ -3,3 +3,14 @@
 //
 
 #include "Client.h"
+
+Client::Client() {
+
+}
+
+Client::Client(string name, int NIF, int nodeDestino, Time arrival) {
+    this->name = name;
+    this->NIF = NIF;
+    this->nodeDestino = nodeDestino;
+    this->arrival = arrival;
+}

@@ -6,14 +6,16 @@
 #define FICHAJUNG_CLIENT_H
 #include <string>
 #include "Time.h"
-#include "Address.h"
 
 using namespace std;
 
 class Client {
+public:
+    Client();
+    Client(string name, int NIF, int nodeDestino, Time arrival);
     string name;
     int NIF;
-    Address destino;
+    int nodeDestino;
     Time arrival;
 };
 

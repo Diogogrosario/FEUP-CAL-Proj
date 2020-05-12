@@ -9,6 +9,7 @@
 #include <list>
 #include <limits>
 #include <cmath>
+#include <cstdint>
 #include "MutablePriorityQueue.h"
 
 using namespace std;

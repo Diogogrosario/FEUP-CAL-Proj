@@ -8,4 +8,4 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(lib)
 include_directories(resources)
-add_executable(Project main.cpp lib/connection.cpp lib/graphviewer.cpp readFile.cpp readFile.h Node.cpp Node.h Client.cpp Client.h Time.cpp Time.h Address.cpp Address.h)
+add_executable(Project main.cpp lib/connection.cpp lib/graphviewer.cpp readFile.cpp readFile.h Node.cpp Node.h Client.cpp Client.h Time.cpp Time.h Algorithms.cpp Algorithms.h)

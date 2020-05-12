@@ -16,4 +16,6 @@ void initGraph();
 
 void paintPath(vector<Node> path,string color);
 
+double dist(Node n1, Node n2);
+
 #endif //FICHAJUNG_READFILE_H
