@@ -89,13 +89,16 @@ vector<Node> bestPath(vector<Client>clients){
         Node n2(orderToVisit.at(i+1).getID(),orderToVisit.at(i+1).getX(),orderToVisit.at(i+1).getY());
         graph.dijkstraShortestPath(n1);
         aux = graph.getPathTo(n2);
-        res.insert(res.end(),aux.begin(),aux.end());
+        res.insert(res.end(),aux.begin(),aux.end()-1);
     }
     graph.dijkstraShortestPath(orderToVisit.at(orderToVisit.size()-1));
     aux.clear();
     aux = graph.getPathTo(orderToVisit.at(0));
     res.insert(res.end(),aux.begin(),aux.end());
 
+    for(int i = 0; i<res.size();i++){
+        cout << res.at(i).getID() << endl;
+    }
     return res;
 }
 
@@ -103,7 +106,7 @@ vector<Node> bestPath(vector<Client>clients){
 double pathCost(vector<Node> best){
     double cost;
     for(int i = 0;i<best.size()-1;i++){
-        cost += graph.getDist().at(i).at(i+1);
+        cost += graph.getDist().at(best.at(i).getID()).at(best.at(i+1).getID());
     }
     return cost;
 }
