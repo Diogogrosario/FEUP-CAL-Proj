@@ -28,7 +28,8 @@ vector<Node> salesmanPath(vector<Client>clients){
 
                 Node n1(ver->getInfo().getID(),ver->getInfo().getX(),ver->getInfo().getY());
                 Node n2(ver2->getInfo().getID(),ver2->getInfo().getX(),ver2->getInfo().getY());
-                aux.addEdge(n1,n2,dist(n1,n2));
+                graph.dijkstraShortestPath(n1);
+                aux.addEdge(n1,n2,graph.findVertex(n2)->getDist());
             }
         }
     }
