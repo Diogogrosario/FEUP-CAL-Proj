@@ -15,7 +15,7 @@ class Vehicle {
     vector<Client> clients;
 
     public:
-        Vehicle(int id, Node n);
+        Vehicle(int id, Client c);
         int getID();
         vector<Node> getPath();
         vector<Client> getClients();

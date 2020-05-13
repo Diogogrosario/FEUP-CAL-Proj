@@ -17,6 +17,8 @@ int main() {
 	readNodeFile("../nodes.txt");
 	readEdgeFile("../edges.txt");
 
+
+    graph.floydWarshallShortestPath();
 	vector<Client> clients;
 	Client c1("José",123456789,250,Time(15,30));
 	Client c2("Alberto",123456789,125,Time(15,30));
@@ -33,30 +35,24 @@ int main() {
     clients.push_back(c6);
     clients.push_back(c7);
 
-//    vector<Vehicle> vehicles;
-//    Vehicle v1(1, Node());
-//    Vehicle v2(2, Node());
-//    vehicles.push_back(v1),
-//    vehicles.push_back(v2);
+
+    Client admin("Admin",123456789,250,Time(15,30));
+    vector<Vehicle> vehicles;
+    Vehicle v1(1, admin);
+    Vehicle v2(2, admin);
+    vehicles.push_back(v1),
+    vehicles.push_back(v2);
 //
-//    assignClients(vehicles, clients);
-
-    vector<Node> orderToVisit;
+//  assignClients(vehicles, clients);
 
 
-    orderToVisit = salesmanPath(clients);
-    for(int i = 0;i<orderToVisit.size()-1;i++){
-        Node n1(orderToVisit.at(i).getID(),orderToVisit.at(i).getX(),orderToVisit.at(i).getY());
-        Node n2(orderToVisit.at(i+1).getID(),orderToVisit.at(i+1).getX(),orderToVisit.at(i+1).getY());
-        graph.dijkstraShortestPath(n1);
-        paintPath(graph.getPathTo(n2),"YELLOW");
-    }
-    graph.dijkstraShortestPath(orderToVisit.at(orderToVisit.size()-1));
-    paintPath(graph.getPathTo(orderToVisit.at(0)),"YELLOW");
-    for(Node n:orderToVisit){
-        gv->setVertexColor(n.getID(),"RED");
-    }
-    gv->rearrange();
+    vector<Node> best;
+    best = bestPath(clients);
+
+    double cost = pathCost(best);
+
+    cout << cost << endl;
+
 
 
 

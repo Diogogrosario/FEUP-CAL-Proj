@@ -5,10 +5,13 @@
 #include <iostream>
 #include "Algorithms.h"
 #include <algorithm>
+#include <graphviewer.h>
 #include "readFile.h"
 
 
 extern Graph<Node> graph;
+
+extern GraphViewer * gv;
 
 vector<Node> salesmanPath(vector<Client>clients){
     vector<Node> res;
@@ -64,10 +67,43 @@ vector<Node> salesmanPath(vector<Client>clients){
 
     }while(next_permutation(salesman.begin(),salesman.end()));
 
-    cout << "cost" <<cost << endl;
+    cout << "traveler cost: " << cost << endl;
+    cout << "traveler path: ";
     for(int i = 0; i< res.size();i++){
         cout << res.at(i).getID() << " ->";
     }
+    cout << endl;
+    return res;
+}
+
+
+
+vector<Node> bestPath(vector<Client>clients){
+    vector<Node>res;
+    vector<Node> orderToVisit;
+    vector<Node> aux;
+    orderToVisit = salesmanPath(clients);
+    for(int i = 0;i<orderToVisit.size()-1;i++){
+        aux.clear();
+        Node n1(orderToVisit.at(i).getID(),orderToVisit.at(i).getX(),orderToVisit.at(i).getY());
+        Node n2(orderToVisit.at(i+1).getID(),orderToVisit.at(i+1).getX(),orderToVisit.at(i+1).getY());
+        graph.dijkstraShortestPath(n1);
+        aux = graph.getPathTo(n2);
+        res.insert(res.end(),aux.begin(),aux.end());
+    }
+    graph.dijkstraShortestPath(orderToVisit.at(orderToVisit.size()-1));
+    aux.clear();
+    aux = graph.getPathTo(orderToVisit.at(0));
+    res.insert(res.end(),aux.begin(),aux.end());
 
     return res;
+}
+
+
+double pathCost(vector<Node> best){
+    double cost;
+    for(int i = 0;i<best.size()-1;i++){
+        cost += graph.getDist().at(i).at(i+1);
+    }
+    return cost;
 }

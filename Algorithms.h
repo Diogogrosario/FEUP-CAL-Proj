@@ -10,4 +10,8 @@
 
 vector<Node> salesmanPath(vector<Client>clients);
 
+vector<Node> bestPath(vector<Client>clients);
+
+double pathCost(vector<Node> best);
+
 #endif //FICHAJUNG_ALGORITHMS_H

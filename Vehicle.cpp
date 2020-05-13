@@ -5,10 +5,9 @@
 #include <iostream>
 #include "Vehicle.h"
 
-Vehicle::Vehicle(int id, Node n) {
+Vehicle::Vehicle(int id, Client c) {
     this->id = id;
-    this->path.push_back(n);
-    this->path.push_back(n);
+    this->clients.push_back(c);
 }
 
 int Vehicle::getID() {
