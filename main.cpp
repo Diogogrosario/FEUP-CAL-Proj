@@ -5,6 +5,8 @@
 #include "Graph.h"
 #include "Client.h"
 #include "Algorithms.h"
+#include "Vehicle.h"
+#include "Utils.h"
 
 
 extern GraphViewer * gv;
@@ -30,6 +32,14 @@ int main() {
     clients.push_back(c5);
     clients.push_back(c6);
     clients.push_back(c7);
+
+//    vector<Vehicle> vehicles;
+//    Vehicle v1(1, Node());
+//    Vehicle v2(2, Node());
+//    vehicles.push_back(v1),
+//    vehicles.push_back(v2);
+//
+//    assignClients(vehicles, clients);
 
     vector<Node> orderToVisit;
 
