@@ -122,4 +122,5 @@ void paintPath(vector<Node> path,string color){
     for(Node n:path){
         gv->setVertexColor(n.getID(),color);
     }
+    gv->rearrange();
 }
