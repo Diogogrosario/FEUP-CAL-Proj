@@ -60,9 +60,12 @@ void readEdgeFile(string name)
 
 void readNodeFile(string name){
 
+    bool hasOffset = false;
     ifstream nodeFile;
 
     nodeFile.open(name.c_str());
+
+    int offsetX = 0,offsetY = 0;
 
     while (!nodeFile.eof()) {
         string line;
@@ -77,11 +80,17 @@ void readNodeFile(string name){
         getline(nodeFile, line, ')');
         y = stoi(line);
 
+
+        if(!hasOffset){
+            offsetX = x;
+            offsetY = y;
+            hasOffset = true;
+        }
         getline(nodeFile, line, '\n');
 
-        gv->addNode(id, x, y);
+        gv->addNode(id, x-offsetX, y-offsetY);
         gv->setVertexLabel(id,to_string(id));
-        graph.addVertex(Node(id,x,y));
+        graph.addVertex(Node(id,x-offsetX,y-offsetY));
     }
 
     gv->rearrange();

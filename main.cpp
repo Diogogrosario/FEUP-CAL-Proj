@@ -22,19 +22,20 @@ int main() {
     Client c4("Davide",123456789,280,Time(15,30));
     Client c5("Eduardo",123456789,5,Time(15,30));
     Client c6("Henrique",123456789,60,Time(15,30));
+    Client c7("Bastos", 123456789,273,Time(15,30));
     clients.push_back(c1);
     clients.push_back(c2);
     clients.push_back(c3);
     clients.push_back(c4);
     clients.push_back(c5);
     clients.push_back(c6);
+    clients.push_back(c7);
 
     vector<Node> orderToVisit;
 
 
     orderToVisit = salesmanPath(clients);
     for(int i = 0;i<orderToVisit.size()-1;i++){
-        cout << "Painting one" << endl;
         Node n1(orderToVisit.at(i).getID(),orderToVisit.at(i).getX(),orderToVisit.at(i).getY());
         Node n2(orderToVisit.at(i+1).getID(),orderToVisit.at(i+1).getX(),orderToVisit.at(i+1).getY());
         graph.dijkstraShortestPath(n1);
