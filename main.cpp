@@ -29,7 +29,23 @@ int main() {
     clients.push_back(c5);
     clients.push_back(c6);
 
-    salesmanPath(clients);
+    vector<Node> orderToVisit;
+
+
+    orderToVisit = salesmanPath(clients);
+    for(int i = 0;i<orderToVisit.size()-1;i++){
+        cout << "Painting one" << endl;
+        Node n1(orderToVisit.at(i).getID(),orderToVisit.at(i).getX(),orderToVisit.at(i).getY());
+        Node n2(orderToVisit.at(i+1).getID(),orderToVisit.at(i+1).getX(),orderToVisit.at(i+1).getY());
+        graph.dijkstraShortestPath(n1);
+        paintPath(graph.getPathTo(n2),"YELLOW");
+    }
+    graph.dijkstraShortestPath(orderToVisit.at(orderToVisit.size()-1));
+    paintPath(graph.getPathTo(orderToVisit.at(0)),"YELLOW");
+    for(Node n:orderToVisit){
+        gv->setVertexColor(n.getID(),"RED");
+    }
+    gv->rearrange();
 
 
 

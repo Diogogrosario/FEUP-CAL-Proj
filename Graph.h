@@ -11,6 +11,7 @@
 #include <cmath>
 #include <cstdint>
 #include "MutablePriorityQueue.h"
+#include "Node.h"
 
 using namespace std;
 
@@ -111,6 +112,10 @@ public:
 	bool addEdge(const T &sourc, const T &dest, double w);
 	int getNumVertex() const;
 	vector<Vertex<T> *> getVertexSet() const;
+    vector<vector<double>> getDist();
+    vector<vector<Vertex<T>*>> getPred();
+    int getPathCost(vector<T> aux) const;
+
 
 	// Fp05 - single source
 	void unweightedShortestPath(const T &s);    //TODO...
@@ -281,6 +286,23 @@ vector<T> Graph<T>::getPathTo(const T &dest) const{
     return res;
 }
 
+template <class T>
+int Graph<T>::getPathCost(vector<T> aux) const{
+    int res;
+
+    for(int i = 0;i<aux.size()-1;i++){
+        auto v1 = findVertex(aux.at(i));
+        auto v2 = findVertex(aux.at(i+1));
+        for(auto w:v1->getAdj()){
+            if(w.dest == v2)
+                res += w.weight;
+        }
+    }
+
+
+    return res;
+}
+
 
 
 /**************** All Pairs Shortest Path  ***************/
@@ -330,15 +352,18 @@ void Graph<T>::floydWarshallShortestPath() {
 template<class T>
 vector<T> Graph<T>::getfloydWarshallPath(const T &orig, const T &dest) const{
 	vector<T> res;
-	int origIndex,destIndex;
+	int origIndex = -1,destIndex = -1;
 	for(int i = 0 ;i<vertexSet.size();i++){
         if (vertexSet.at(i)->info == orig)
             origIndex = i;
         else if (vertexSet.at(i)->info == dest)
             destIndex = i;
 	}
+
+
+
+
     while (pred[origIndex][destIndex] != vertexSet[origIndex]) {
-        res.emplace(res.begin(), pred[origIndex][destIndex]->info);
         for (int i = 0; i < vertexSet.size(); i++) {
             if (vertexSet.at(i)->info == pred[origIndex][destIndex]->info) {
                 destIndex = i;
@@ -349,7 +374,21 @@ vector<T> Graph<T>::getfloydWarshallPath(const T &orig, const T &dest) const{
     res.push_back(dest);
     res.insert(res.begin(), orig);
 
+    for(int i = 0;i< res.size();i++){
+        cout << res.at(i).getID();
+    }
+
     return res;
+}
+
+template<class T>
+vector<vector<double>> Graph<T>::getDist() {
+    return dist;
+}
+
+template<class T>
+vector<vector<Vertex<T> *>> Graph<T>::getPred() {
+    return pred;
 }
 
 

@@ -37,6 +37,8 @@ void readEdgeFile(string name)
         getline(edgeFile, line, '\n');
 
         gv->addEdge(id, n1, n2, EdgeType::UNDIRECTED);
+        id++;
+        gv->addEdge(id, n2, n1, EdgeType::UNDIRECTED);
         Node source;
         Node dest;
         for(int i = 0;i<graph.getVertexSet().size();i++){
@@ -47,6 +49,7 @@ void readEdgeFile(string name)
         }
 
         graph.addEdge(source,dest,dist(source,dest));
+        graph.addEdge(dest,source,dist(source,dest));
         id++;
     }
     gv->rearrange();
@@ -77,6 +80,7 @@ void readNodeFile(string name){
         getline(nodeFile, line, '\n');
 
         gv->addNode(id, x, y);
+        gv->setVertexLabel(id,to_string(id));
         graph.addVertex(Node(id,x,y));
     }
 
