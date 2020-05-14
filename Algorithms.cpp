@@ -31,12 +31,12 @@ vector<Node> salesmanPath(vector<Client>clients){
 
                 Node n1(ver->getInfo().getID(),ver->getInfo().getX(),ver->getInfo().getY());
                 Node n2(ver2->getInfo().getID(),ver2->getInfo().getX(),ver2->getInfo().getY());
-                graph.dijkstraShortestPath(n1);
-                aux.addEdge(n1,n2,graph.findVertex(n2)->getDist());
+                int dist = graph.getDist().at(n1.getID()).at(n2.getID());
+                if(dist != INT64_MAX)
+                    aux.addEdge(n1,n2,dist);
             }
         }
     }
-
     //FINISHED BUILDING AUX GRAPH
     aux.floydWarshallShortestPath();
 
@@ -72,7 +72,7 @@ vector<Node> salesmanPath(vector<Client>clients){
     for(int i = 0; i< res.size();i++){
         cout << res.at(i).getID() << " ->";
     }
-    cout << endl;
+    cout << res.at(0).getID()<< endl;
     return res;
 }
 
@@ -95,10 +95,6 @@ vector<Node> bestPath(vector<Client>clients){
     aux.clear();
     aux = graph.getPathTo(orderToVisit.at(0));
     res.insert(res.end(),aux.begin(),aux.end());
-
-    for(int i = 0; i<res.size();i++){
-        cout << res.at(i).getID() << endl;
-    }
     return res;
 }
 
