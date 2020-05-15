@@ -76,7 +76,7 @@ vector<Node> salesmanPath(vector<Client>clients){
     for(int i = 0; i< res.size();i++){
         cout << res.at(i).getID() << " ->";
     }
-    cout << res.at(0).getID()<< endl << endl;
+    cout << res.at(0).getID()<< endl;
     return res;
 }
 

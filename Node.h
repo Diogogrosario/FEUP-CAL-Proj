@@ -15,9 +15,9 @@ class Node {
     public:
         Node();
         Node(int id, int x,int y);
-        int getX();
-        int getY();
-        int getID();
+        int getX() const ;
+        int getY() const ;
+        int getID() const ;
         bool operator==(Node n2)const;
 };
 

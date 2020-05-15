@@ -149,6 +149,7 @@ vector<Vertex<T> *> Graph<T>::getVertexSet() const {
  */
 template <class T>
 Vertex<T> * Graph<T>::findVertex(const T &in) const {
+
 	for (auto v : vertexSet)
 		if (v->info == in)
 			return v;

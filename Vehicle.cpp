@@ -40,23 +40,24 @@ void Vehicle::addToPath(Node node, int index) {
 void Vehicle::addClient(Client client) {
     clients.push_back(client);
     cout << endl<<"inside add client " << endl;
-    path = bestPath(clients);
+    path.clear();
+    path = best;
     cout << endl;
     CustoPath = pathCost(path);
 }
 
 double Vehicle::testAddClient(Client client) {
     vector<Client> aux = this->clients;
+    best.clear();
     if(client.nodeDestino == clients.at(0).nodeDestino)
         return INT64_MAX;
     aux.push_back(client);
     cout << "testind adding client " << client.name << " to vehicle " << this->id << endl;
 
-    vector<Node> best;
-    best = bestPath(aux);
-    double cost = pathCost(best);
 
-    return cost - CustoPath;
+    best = bestPath(aux);
+
+    return pathCost(best) - CustoPath;
 }
 
 double Vehicle::getCustoPath(){

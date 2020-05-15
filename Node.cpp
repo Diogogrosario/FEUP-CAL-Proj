@@ -10,15 +10,15 @@ Node::Node(int id, int x,int y){
         this->coords.push_back(y);
 }
 
-int Node::getX() {
+int Node::getX() const{
     return coords.at(0);
 }
 
-int Node::getY() {
+int Node::getY() const{
     return coords.at(1);
 }
 
-int Node::getID() {
+int Node::getID() const{
     return id;
 }
 
