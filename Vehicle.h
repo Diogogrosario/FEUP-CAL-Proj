@@ -15,9 +15,12 @@ class Vehicle {
     vector<Client> clients;
     double CustoPath;
     string color;
+    string colorVertex;
+    vector<Node> best;
     public:
         double getCustoPath();
-        Vehicle(int id, Client c,string color);
+        string getColorVertex();
+        Vehicle(int id, Client c,string color,string colorVertex);
         int getID();
         vector<Node> getPath();
         vector<Client> getClients();

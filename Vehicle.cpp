@@ -6,12 +6,13 @@
 #include "Vehicle.h"
 #include "readFile.h"
 
-Vehicle::Vehicle(int id, Client c,string color) {
+Vehicle::Vehicle(int id, Client c,string color,string colorVertex) {
     this->id = id;
     this->clients.push_back(c);
     this->path.push_back(Node(c.nodeDestino,0,0));
     this->CustoPath = 0;
     this->color = color;
+    this->colorVertex = colorVertex;
 }
 
 int Vehicle::getID() {
@@ -64,4 +65,8 @@ double Vehicle::getCustoPath(){
 
 string Vehicle::getColor() {
     return this->color;
+}
+
+string Vehicle::getColorVertex() {
+    return this->colorVertex;
 }

@@ -7,6 +7,7 @@
 #include "Graph.h"
 #include <fstream>
 #include "Node.h"
+#include "Vehicle.h"
 #include <string>
 
 
@@ -111,9 +112,12 @@ double dist(Node n1, Node n2){
 }
 
 
-void paintPath(vector<Node> path,string color){
-    for (Node n:path) {
-        gv->setVertexColor(n.getID(), color);
+void paintPath(Vehicle v){
+    for (Node n:v.getPath()) {
+        gv->setVertexColor(n.getID(), v.getColor());
+    }
+    for(Client c:v.getClients()){
+        gv->setVertexColor(c.nodeDestino,v.getColorVertex());
     }
     gv->rearrange();
 }

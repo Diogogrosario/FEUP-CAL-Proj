@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "Node.h"
+#include "Vehicle.h"
 
 void readEdgeFile(string name);
 
@@ -14,7 +15,7 @@ void readNodeFile(string name);
 
 void initGraph();
 
-void paintPath(vector<Node> path,string color);
+void paintPath(Vehicle v);
 
 double dist(Node n1, Node n2);
 

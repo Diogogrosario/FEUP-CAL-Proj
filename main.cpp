@@ -38,8 +38,8 @@ int main() {
 
     Client admin("Admin",123456789,70,Time(15,30));
     vector<Vehicle> vehicles;
-    Vehicle v1(1, admin,YELLOW);
-    Vehicle v2(2, admin,RED);
+    Vehicle v1(1, admin,YELLOW,PINK);
+    Vehicle v2(2, admin,RED,ORANGE);
     vehicles.push_back(v1),
     vehicles.push_back(v2);
 
@@ -48,7 +48,7 @@ int main() {
 
     cout << "finished assignment" << endl;
     for(Vehicle v:vehicles){
-        paintPath(v.getPath(),v.getColor());
+        paintPath(v);
     }
 
 	getchar();
