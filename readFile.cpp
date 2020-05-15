@@ -24,14 +24,16 @@ void readEdgeFile(string name)
 
     while (!edgeFile.eof()) {
         string line;
-        int id, n1, n2;
+        int id, n1, n2,weight;
 
         getline(edgeFile, line, '(');
 
         getline(edgeFile, line, ',');
         n1 = stoi(line);
-        getline(edgeFile, line, ')');
+        getline(edgeFile, line, ',');
         n2 = stoi(line);
+        getline(edgeFile, line, ')');
+        weight = stoi(line);
 
 
         getline(edgeFile, line, '\n');
@@ -48,8 +50,8 @@ void readEdgeFile(string name)
                 dest = graph.getVertexSet().at(i)->getInfo();
         }
 
-        graph.addEdge(source,dest,dist(source,dest));
-        graph.addEdge(dest,source,dist(source,dest));
+        graph.addEdge(source,dest,weight);
+
         id++;
     }
     gv->rearrange();
@@ -122,6 +124,5 @@ void paintPath(vector<Node> path,string color){
     for (Node n:path) {
         gv->setVertexColor(n.getID(), color);
     }
-
     gv->rearrange();
 }

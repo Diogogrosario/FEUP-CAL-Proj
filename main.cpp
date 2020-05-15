@@ -20,9 +20,9 @@ int main() {
 
     graph.floydWarshallShortestPath();
 	vector<Client> clients;
-	Client c1("José",123456789,255,Time(15,30));
-	Client c2("Alberto",123456789,125,Time(15,30));
-    Client c3("Diogo",123456789,100,Time(15,30));
+    Client c1("José",123456789,16,Time(15,30));
+	Client c2("Alberto",123456789,120,Time(15,30));
+    Client c3("Diogo",123456789,0,Time(15,30));
     Client c4("Davide",123456789,280,Time(15,30));
     Client c5("Eduardo",123456789,5,Time(15,30));
     Client c6("Henrique",123456789,60,Time(15,30));
@@ -36,7 +36,7 @@ int main() {
     clients.push_back(c7);
 
 
-    Client admin("Admin",123456789,250,Time(15,30));
+    Client admin("Admin",123456789,900,Time(15,30));
     vector<Vehicle> vehicles;
     Vehicle v1(1, admin,YELLOW);
     Vehicle v2(2, admin,RED);
