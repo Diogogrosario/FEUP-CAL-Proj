@@ -59,7 +59,7 @@ vector<Node> salesmanPath(vector<Client>clients){
             k= salesman.at(i);
         }
         if(aux.getDist().at(k).at(index) != INT64_MAX) {
-            path_cost += aux.getDist().at(index).at(k);
+            path_cost += aux.getDist().at(k).at(index);
             auxiliaryRes.push_back(aux.getPred().at(k).at(index)->getInfo());
         }
 
