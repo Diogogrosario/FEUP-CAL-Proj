@@ -25,7 +25,8 @@ void readEdgeFile(string name)
 
     while (!edgeFile.eof()) {
         string line;
-        int id, n1, n2,weight;
+        int id, n1, n2;
+        double weight;
 
         getline(edgeFile, line, '(');
 
@@ -41,7 +42,6 @@ void readEdgeFile(string name)
 
         gv->addEdge(id, n1, n2, EdgeType::UNDIRECTED);
         id++;
-        gv->addEdge(id, n2, n1, EdgeType::UNDIRECTED);
 
         graph.addEdge(Node(n1,0,0),Node(n2,0,0),weight);
 

@@ -52,15 +52,14 @@ vector<Node> salesmanPath(vector<Client>clients){
         auxiliaryRes.clear();
         int k = index;
         for(int i = 0;i<salesman.size();i++){
-            if(aux.getDist().at(k).at(index) != INT64_MAX){
+            if(aux.getDist().at(k).at(salesman.at(i)) != INT64_MAX){
                 path_cost += aux.getDist().at(k).at(salesman.at(i));
                 auxiliaryRes.push_back(aux.getPred().at(k).at(salesman.at(i))->getInfo());
             }
-
             k= salesman.at(i);
         }
         if(aux.getDist().at(k).at(index) != INT64_MAX) {
-            path_cost += aux.getDist().at(k).at(index);
+            path_cost += aux.getDist().at(index).at(k);
             auxiliaryRes.push_back(aux.getPred().at(k).at(index)->getInfo());
         }
 
