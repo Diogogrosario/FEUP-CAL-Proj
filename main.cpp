@@ -32,7 +32,6 @@ int main() {
     Client c7("Bastos", 123456789,508,Time(15,30));
     clients.push_back(c1);
     clients.push_back(c2);
-
     clients.push_back(c7);
     clients.push_back(c3);
     clients.push_back(c4);
@@ -46,8 +45,6 @@ int main() {
     Vehicle v2(2, admin,RED,ORANGE);
     vehicles.push_back(v1),
     vehicles.push_back(v2);
-
-
 
     assignClients(vehicles, clients);
 

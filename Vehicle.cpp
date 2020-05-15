@@ -13,6 +13,7 @@ Vehicle::Vehicle(int id, Client c,string color,string colorVertex) {
     this->CustoPath = 0;
     this->color = color;
     this->colorVertex = colorVertex;
+    this->capacity = 5;
 }
 
 int Vehicle::getID() {
@@ -39,10 +40,8 @@ void Vehicle::addToPath(Node node, int index) {
 
 void Vehicle::addClient(Client client) {
     clients.push_back(client);
-    cout << endl<<"inside add client " << endl;
     path.clear();
     path = best;
-    cout << endl;
     CustoPath = pathCost(path);
 }
 
@@ -70,4 +69,8 @@ string Vehicle::getColor() {
 
 string Vehicle::getColorVertex() {
     return this->colorVertex;
+}
+
+int Vehicle::getCapacity() {
+    return this->capacity;
 }

@@ -17,8 +17,10 @@ class Vehicle {
     string color;
     string colorVertex;
     vector<Node> best;
+    int capacity;
     public:
         double getCustoPath();
+        int getCapacity();
         string getColorVertex();
         Vehicle(int id, Client c,string color,string colorVertex);
         int getID();

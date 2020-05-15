@@ -15,15 +15,17 @@ void assignClients(vector<Vehicle>& vehicles, vector<Client>& clients) {
     vector<Vehicle>::iterator v;
     for(Client c: clients){
         for(v = vehicles.begin();v != vehicles.end();v++){
-            double currentCost = v->testAddClient(c);
-            cout << "vehicle at " << v->getID() << " costs aditional " << currentCost << endl << endl;
-            if(currentCost < minCost) {
-                minCost = currentCost;
-                index = counter;
-            }
-            if(currentCost == minCost){
-                if(v->getClients().size() < vehicles.at(index).getClients().size()){
+            if(v->getClients().size() < v->getCapacity()) {
+                double currentCost = v->testAddClient(c);
+                cout << "vehicle at " << v->getID() << " costs aditional " << currentCost << endl << endl;
+                if (currentCost < minCost) {
+                    minCost = currentCost;
                     index = counter;
+                }
+                if (currentCost == minCost) {
+                    if (v->getClients().size() < vehicles.at(index).getClients().size()) {
+                        index = counter;
+                    }
                 }
             }
             counter++;
@@ -33,5 +35,6 @@ void assignClients(vector<Vehicle>& vehicles, vector<Client>& clients) {
         counter = 0;
         minCost = INT64_MAX;
     }
+
 }
 
