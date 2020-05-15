@@ -41,20 +41,11 @@ void readEdgeFile(string name)
         gv->addEdge(id, n1, n2, EdgeType::UNDIRECTED);
         id++;
         gv->addEdge(id, n2, n1, EdgeType::UNDIRECTED);
-        Node source;
-        Node dest;
-        for(int i = 0;i<graph.getVertexSet().size();i++){
-            if(n1 == graph.getVertexSet().at(i)->getInfo().getID())
-                source = graph.getVertexSet().at(i)->getInfo();
-            if(n2 == graph.getVertexSet().at(i)->getInfo().getID())
-                dest = graph.getVertexSet().at(i)->getInfo();
-        }
 
-        graph.addEdge(source,dest,weight);
+        graph.addEdge(Node(n1,0,0),Node(n2,0,0),weight);
 
         id++;
     }
-    gv->rearrange();
     edgeFile.close();
     return;
 }
@@ -103,9 +94,9 @@ void readNodeFile(string name){
 
 void initGraph(){
     gv = new GraphViewer(1000, 1000, false);
-    gv->createWindow(1000, 1000);
     gv->defineVertexColor("blue");
     gv->defineEdgeColor("black");
+    gv->createWindow(1000, 1000);
 
 }
 
