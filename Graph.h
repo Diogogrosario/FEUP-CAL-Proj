@@ -374,9 +374,7 @@ vector<T> Graph<T>::getfloydWarshallPath(const T &orig, const T &dest) const{
     res.push_back(dest);
     res.insert(res.begin(), orig);
 
-    for(int i = 0;i< res.size();i++){
-        cout << res.at(i).getID();
-    }
+
 
     return res;
 }

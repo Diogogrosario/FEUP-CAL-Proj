@@ -4,21 +4,24 @@
 
 #include "Utils.h"
 
-void assignClients(vector<Vehicle> vehicles, vector<Client>& clients) {
+void assignClients(vector<Vehicle>& vehicles, vector<Client>& clients) {
+    double minCost = INT64_MAX;
 
-    for (int i = 0; i < clients.size(); i++) {
-        if (assignClientToVehicle(vehicles, clients.at(i))) {
-            clients.erase(clients.begin() + i);
-            i--;
+    int index = 0;
+    int counter = 0;
+    for(Client c: clients){
+        for(Vehicle v: vehicles){
+            double currentCost = v.testAddClient(c);
+            if(currentCost < minCost) {
+                minCost = currentCost;
+                index = counter;
+            }
+            counter++;
         }
+        vehicles.at(index).addClient(c);
+        index = 0;
+        counter = 0;
+        minCost = INT64_MAX;
     }
 }
 
-bool assignClientToVehicle(vector<Vehicle>& vehicles, Client client) {
-    // TODO
-    for (auto v : vehicles) {
-
-    }
-
-    return true;
-}

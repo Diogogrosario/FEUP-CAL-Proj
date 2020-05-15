@@ -52,12 +52,17 @@ vector<Node> salesmanPath(vector<Client>clients){
         auxiliaryRes.clear();
         int k = index;
         for(int i = 0;i<salesman.size();i++){
-            path_cost += aux.getDist().at(k).at(salesman.at(i));
-            auxiliaryRes.push_back(aux.getPred().at(k).at(salesman.at(i))->getInfo());
+            if(aux.getDist().at(k).at(index) != INT64_MAX){
+                path_cost += aux.getDist().at(k).at(salesman.at(i));
+                auxiliaryRes.push_back(aux.getPred().at(k).at(salesman.at(i))->getInfo());
+            }
+
             k= salesman.at(i);
         }
-        path_cost += aux.getDist().at(k).at(index);
-        auxiliaryRes.push_back(aux.getPred().at(k).at(index)->getInfo());
+        if(aux.getDist().at(k).at(index) != INT64_MAX) {
+            path_cost += aux.getDist().at(k).at(index);
+            auxiliaryRes.push_back(aux.getPred().at(k).at(index)->getInfo());
+        }
 
         if(path_cost < cost){
             cost = path_cost;
@@ -72,7 +77,7 @@ vector<Node> salesmanPath(vector<Client>clients){
     for(int i = 0; i< res.size();i++){
         cout << res.at(i).getID() << " ->";
     }
-    cout << res.at(0).getID()<< endl;
+    cout << res.at(0).getID()<< endl << endl;
     return res;
 }
 

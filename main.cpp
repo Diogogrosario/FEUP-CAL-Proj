@@ -20,7 +20,7 @@ int main() {
 
     graph.floydWarshallShortestPath();
 	vector<Client> clients;
-	Client c1("José",123456789,250,Time(15,30));
+	Client c1("José",123456789,255,Time(15,30));
 	Client c2("Alberto",123456789,125,Time(15,30));
     Client c3("Diogo",123456789,100,Time(15,30));
     Client c4("Davide",123456789,280,Time(15,30));
@@ -38,23 +38,18 @@ int main() {
 
     Client admin("Admin",123456789,250,Time(15,30));
     vector<Vehicle> vehicles;
-    Vehicle v1(1, admin);
-    Vehicle v2(2, admin);
+    Vehicle v1(1, admin,YELLOW);
+    Vehicle v2(2, admin,RED);
     vehicles.push_back(v1),
     vehicles.push_back(v2);
-//
-//  assignClients(vehicles, clients);
+
+    assignClients(vehicles, clients);
 
 
-    vector<Node> best;
-    best = bestPath(clients);
-
-    double cost = pathCost(best);
-    paintPath(best,YELLOW);
-    cout << cost << endl;
-
-
-
+    cout << "finished assignment" << endl;
+    for(Vehicle v:vehicles){
+        paintPath(v.getPath(),v.getColor());
+    }
 
 	getchar();
 	return 0;

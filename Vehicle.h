@@ -8,20 +8,23 @@
 
 #include "Node.h"
 #include "Client.h"
-
+#include "Algorithms.h"
 class Vehicle {
     int id;
     vector<Node> path;
     vector<Client> clients;
-
+    double CustoPath;
+    string color;
     public:
-        Vehicle(int id, Client c);
+        double getCustoPath();
+        Vehicle(int id, Client c,string color);
         int getID();
         vector<Node> getPath();
         vector<Client> getClients();
         void addToPath(Node node, int index);
         void addClient(Client client);
-        double testAddClient(Client client, int& bestNodeOrigin, int& bestNodeDestination);
+        double testAddClient(Client client);
+        string getColor();
 };
 
 
