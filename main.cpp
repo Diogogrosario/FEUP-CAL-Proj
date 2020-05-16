@@ -21,7 +21,7 @@ int main() {
 
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
-    graph.floydWarshallShortestPath();
+    //graph.floydWarshallShortestPath();
 	vector<Client> clients;
     Client c1("José",123456789,215,Time(15,30));
 	Client c2("Alberto",123456789,390,Time(15,30));

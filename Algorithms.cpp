@@ -31,8 +31,10 @@ vector<Node> salesmanPath(vector<Client>clients){
 
                 Node n1(ver->getInfo().getID(),ver->getInfo().getX(),ver->getInfo().getY());
                 Node n2(ver2->getInfo().getID(),ver2->getInfo().getX(),ver2->getInfo().getY());
-                int dist = graph.getDist().at(n1.getID()).at(n2.getID());
-                if(dist != INT64_MAX)
+                graph.dijkstraShortestPath(n1);
+                int dist = graph.getVertexSet().at(n2.getID())->getDist();
+                //int dist = graph.getDist().at(n1.getID()).at(n2.getID());
+                //if(dist != INT64_MAX)
                     aux.addEdge(n1,n2,dist);
             }
         }
@@ -106,7 +108,9 @@ vector<Node> bestPath(vector<Client>clients){
 double pathCost(vector<Node> best){
     double cost;
     for(int i = 0;i<best.size()-1;i++){
-        cost += graph.getDist().at(best.at(i).getID()).at(best.at(i+1).getID());
+        graph.dijkstraShortestPath(best.at(i));
+
+        cost += graph.getVertexSet().at(best.at(i+1).getID())->getDist();
     }
     return cost;
 }
