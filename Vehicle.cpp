@@ -43,7 +43,7 @@ void Vehicle::addClient(Client client) {
     path.clear();
     path = best;
     CustoPath = pathCost(path);
-    cout << "Added client - new custo" << CustoPath << endl;
+    //cout << "Added client - new custo" << CustoPath << endl;
 }
 
 double Vehicle::testAddClient(Client client) {
@@ -54,7 +54,7 @@ double Vehicle::testAddClient(Client client) {
         return INT64_MAX;
     aux.push_back(client);
     cout << "testind adding client " << client.name << " to vehicle " << this->id << endl;
-    cout << "current cost" << CustoPath << endl;
+   //cout << "current cost" << CustoPath << endl;
 
 
     best = bestPath(aux);
