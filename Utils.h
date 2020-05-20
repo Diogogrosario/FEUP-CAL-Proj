@@ -9,5 +9,8 @@
 
 void assignClients(vector<Vehicle>& vehicles, vector<Client>& clients);
 
+void showClientes(vector <Vehicle> v);
+
+void showPath(vector<Vehicle> v);
 
 #endif //FICHAJUNG_UTILS_H

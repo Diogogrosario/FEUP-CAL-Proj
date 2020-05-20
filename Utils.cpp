@@ -3,7 +3,13 @@
 //
 
 #include "Utils.h"
+#include "readFile.h"
 #include <iostream>
+#include <graphviewer.h>
+
+
+extern GraphViewer * gv;
+extern Graph<Node> graph;
 
 using  namespace std;
 
@@ -17,7 +23,7 @@ void assignClients(vector<Vehicle>& vehicles, vector<Client>& clients) {
         for(v = vehicles.begin();v != vehicles.end();v++){
             if(v->getClients().size() < v->getCapacity()) {
                 double currentCost = v->testAddClient(c);
-                cout << "vehicle at " << v->getID() << " costs aditional " << currentCost << endl << endl;
+                //cout << "vehicle at " << v->getID() << " costs aditional " << currentCost << endl << endl;
                 if (currentCost < minCost) {
                     minCost = currentCost;
                     index = counter;
@@ -38,3 +44,21 @@ void assignClients(vector<Vehicle>& vehicles, vector<Client>& clients) {
 
 }
 
+void showClientes(vector <Vehicle> v){
+    for(Vehicle v2: v){
+        for(Client c: v2.getClients()){
+            if(c.name != "Admin")
+                cout << "Client " << c.name << " travelling to node " << c.nodeDestino << endl;
+        }
+    }
+}
+
+void showPath(vector<Vehicle> v){
+    for(auto v:graph.getVertexSet()){
+        gv->setVertexColor(v->getInfo().getID(),BLUE);
+    }
+    for(Vehicle v2:v){
+            paintPath(v2);
+    }
+
+}

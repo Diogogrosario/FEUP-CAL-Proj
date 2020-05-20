@@ -98,7 +98,6 @@ void initGraph(){
     gv->defineVertexColor("blue");
     gv->defineEdgeColor("black");
     gv->createWindow(1000, 1000);
-
 }
 
 
@@ -113,6 +112,7 @@ double dist(Node n1, Node n2){
 
 
 void paintPath(Vehicle v){
+
     for (Node n:v.getPath()) {
         gv->setVertexColor(n.getID(), v.getColor());
     }

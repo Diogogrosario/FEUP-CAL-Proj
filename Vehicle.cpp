@@ -13,7 +13,7 @@ Vehicle::Vehicle(int id, Client c,string color,string colorVertex) {
     this->CustoPath = 0;
     this->color = color;
     this->colorVertex = colorVertex;
-    this->capacity = 5;
+    this->capacity = 6;
 }
 
 int Vehicle::getID() {
@@ -53,7 +53,7 @@ double Vehicle::testAddClient(Client client) {
     if(client.nodeDestino == clients.at(0).nodeDestino)
         return INT64_MAX;
     aux.push_back(client);
-    cout << "testind adding client " << client.name << " to vehicle " << this->id << endl;
+    //cout << "testind adding client " << client.name << " to vehicle " << this->id << endl;
    //cout << "current cost" << CustoPath << endl;
 
 

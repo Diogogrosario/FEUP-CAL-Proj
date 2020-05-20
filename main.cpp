@@ -18,10 +18,6 @@ int main() {
 	readNodeFile("../nodes.txt");
 	readEdgeFile("../edges.txt");
 
-
-    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-
-    //graph.floydWarshallShortestPath();
 	vector<Client> clients;
     Client c1("José",123456789,215,Time(15,30));
 	Client c2("Alberto",123456789,390,Time(15,30));
@@ -48,16 +44,35 @@ int main() {
 
     assignClients(vehicles, clients);
 
+    int choice = -1;
 
-    cout << "finished assignment" << endl;
-    for(Vehicle v:vehicles){
-        paintPath(v);
+    cout << "Welcome to PortoCityTransfers" << endl << endl;
+
+    while(choice != 0) {
+
+        cout << "1) Show all clientes scheduled for trip at the moment" << endl;
+        cout << "2) Show path for all clientes" << endl;
+        cout << "3) Add client" << endl;
+        cout << "0) Quit" << endl;
+
+        cin >> choice;
+
+        switch(choice){
+            case 2:
+                showPath(vehicles);
+                break;
+            case 1:
+                showClientes(vehicles);
+                break;
+            case 3:
+                cout << "NOT IMPLEMENTED";
+                break;
+
+
+
+        }
+
     }
 
-    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-
-    cout << "time difference: " << chrono::duration_cast<chrono::seconds>(end-begin).count() << endl;
-
-	getchar();
 	return 0;
 }

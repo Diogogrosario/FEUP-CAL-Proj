@@ -73,12 +73,12 @@ vector<Node> salesmanPath(vector<Client>clients){
 
     }while(next_permutation(salesman.begin(),salesman.end()));
 
-    cout << "traveler cost: " << cost << endl;
+    /*cout << "traveler cost: " << cost << endl;
     cout << "traveler path: ";
     for(int i = 0; i< res.size();i++){
         cout << res.at(i).getID() << " ->";
     }
-    cout << res.at(0).getID()<< endl;
+    cout << res.at(0).getID()<< endl;*/
     return res;
 }
 
