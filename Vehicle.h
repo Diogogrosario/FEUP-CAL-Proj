@@ -9,7 +9,31 @@
 #include "Node.h"
 #include "Client.h"
 #include "Algorithms.h"
+
 class Vehicle {
+public:
+    double getCustoPath();
+
+    int getCapacity();
+
+    string getColorVertex();
+
+    Vehicle(int id, Client c, string color, string colorVertex);
+
+    int getID();
+
+    vector<Node> getPath();
+
+    vector<Client> getClients();
+
+    void addToPath(Node node, int index);
+
+    void addClient(Client client);
+
+    double testAddClient(Client client);
+
+    string getColor();
+
     int id;
     vector<Node> path;
     vector<Client> clients;
@@ -18,18 +42,6 @@ class Vehicle {
     string colorVertex;
     vector<Node> best;
     int capacity;
-    public:
-        double getCustoPath();
-        int getCapacity();
-        string getColorVertex();
-        Vehicle(int id, Client c,string color,string colorVertex);
-        int getID();
-        vector<Node> getPath();
-        vector<Client> getClients();
-        void addToPath(Node node, int index);
-        void addClient(Client client);
-        double testAddClient(Client client);
-        string getColor();
 };
 
 

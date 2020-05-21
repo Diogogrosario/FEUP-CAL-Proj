@@ -13,4 +13,7 @@ Client::Client(string name, int NIF, int nodeDestino, Time arrival) {
     this->NIF = NIF;
     this->nodeDestino = nodeDestino;
     this->arrival = arrival;
+    this->delivered = false;
+    this->needsDelivery = false;
 }
+

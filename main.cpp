@@ -20,12 +20,12 @@ int main() {
 
 	vector<Client> clients;
     Client c1("José",123456789,215,Time(15,30));
-	Client c2("Alberto",123456789,390,Time(15,30));
-    Client c3("Diogo",123456789,354,Time(15,30));
-    Client c4("Davide",123456789,284,Time(15,30));
-    Client c5("Eduardo",123456789,504,Time(15,30));
-    Client c6("Henrique",123456789,781,Time(15,30));
-    Client c7("Bastos", 123456789,508,Time(15,30));
+	Client c2("Alberto",123456789,390,Time(17,30));
+    Client c3("Diogo",123456789,354,Time(17,30));
+    Client c4("Davide",123456789,284,Time(17,30));
+    Client c5("Eduardo",123456789,504,Time(17,30));
+    Client c6("Henrique",123456789,781,Time(17,30));
+    Client c7("Bastos", 123456789,508,Time(17,30));
     clients.push_back(c1);
     clients.push_back(c2);
     clients.push_back(c7);
@@ -51,10 +51,10 @@ int main() {
     Client add;
 
     while(choice != 0) {
-        clients.clear();fflush(stdin);
         cout << "1) Show all clientes scheduled for trip at the moment" << endl;
-        cout << "2) Show path for all clientes" << endl;
+        cout << "2) Show path for all clients for next trip" << endl;
         cout << "3) Add client" << endl;
+        cout << "4) Simulate trip" << endl;
         cout << "0) Quit" << endl;
 
         cin >> choice;
@@ -69,8 +69,17 @@ int main() {
             case 3:
                 createClient(&add);
                 clients.push_back(add);
-                assignClients(vehicles,clients);
                 break;
+            case 4:
+                for(Vehicle &v: vehicles){
+                    v.clients.clear();
+                    v.CustoPath = 0;
+                    v.path.clear();
+                    v.capacity = 6;
+                    v.addClient(admin);
+                    v.path.push_back(Node(admin.nodeDestino,0,0));
+                }
+                assignClients(vehicles,clients);
         }
 
     }

@@ -7,11 +7,11 @@
 
 
 class Time {
-    int hours;
-    int minutes;
 public:
     Time();
     Time(int hours,int minutes);
+    int hours;
+    int minutes;
 };
 
 

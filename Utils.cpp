@@ -16,28 +16,47 @@ using  namespace std;
 
 void assignClients(vector<Vehicle>& vehicles, vector<Client>& clients) {
     double minCost = INT64_MAX;
+    int minTime = INT16_MAX;
+    for(Client &c:clients){
+        if(!c.delivered) {
+            if (c.arrival.hours * 60 + c.arrival.minutes < minTime) {
+                minTime = c.arrival.hours * 60 + c.arrival.minutes;
+            }
+        }
+    }
+
+    for(Client &c:clients){
+        if(c.arrival.hours*60+c.arrival.minutes <= minTime+60 && !c.delivered){
+            c.needsDelivery = true;
+        }
+    }
 
     int index = 0;
     int counter = 0;
     vector<Vehicle>::iterator v;
-    for(Client c: clients){
-        for(v = vehicles.begin();v != vehicles.end();v++){
-            if(v->getClients().size() < v->getCapacity()) {
-                double currentCost = v->testAddClient(c);
-                //cout << "vehicle at " << v->getID() << " costs aditional " << currentCost << endl << endl;
-                if (currentCost < minCost) {
-                    minCost = currentCost;
-                    index = counter;
-                }
-                if (currentCost == minCost) {
-                    if (v->getClients().size() < vehicles.at(index).getClients().size()) {
+    for(Client &c: clients){
+        if(!c.delivered && c.needsDelivery) {
+            for (v = vehicles.begin(); v != vehicles.end(); v++) {
+                if (v->getClients().size() < v->getCapacity()) {
+                    double currentCost = v->testAddClient(c);
+                    //cout << "vehicle at " << v->getID() << " costs aditional " << currentCost << endl << endl;
+                    if (currentCost < minCost) {
+                        minCost = currentCost;
                         index = counter;
                     }
+                    if (currentCost == minCost) {
+                        if (v->getClients().size() < vehicles.at(index).getClients().size()) {
+                            index = counter;
+                        }
+                    }
                 }
+                counter++;
             }
-            counter++;
+
+            vehicles.at(index).addClient(c);
+            c.delivered = true;
+            c.needsDelivery = false;
         }
-        vehicles.at(index).addClient(c);
         index = 0;
         counter = 0;
         minCost = INT64_MAX;

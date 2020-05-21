@@ -17,6 +17,8 @@ public:
     int NIF;
     int nodeDestino;
     Time arrival;
+    bool delivered = false;
+    bool needsDelivery = false;
 };
 
 
