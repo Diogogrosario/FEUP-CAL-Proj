@@ -76,11 +76,12 @@ int main() {
                     v.CustoPath = 0;
                     v.path.clear();
                     v.capacity = 6;
-                    v.addClient(admin);
+                    v.clients.push_back(admin);
                     v.path.push_back(Node(admin.nodeDestino,0,0));
                     v.best.clear();
                 }
                 assignClients(vehicles,clients);
+                break;
         }
 
     }
