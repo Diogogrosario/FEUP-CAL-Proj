@@ -49,9 +49,10 @@ void showClientes(vector <Vehicle> v){
     for(Vehicle v2: v){
         for(Client c: v2.getClients()){
             if(c.name != "Admin")
-                cout << "Client " << c.name << " travelling to node " << c.nodeDestino << endl<<endl;
+                cout << "Client " << c.name << " travelling to node " << c.nodeDestino << endl;
         }
     }
+    cout << endl;
 }
 
 void showPath(vector<Vehicle> v){
@@ -60,7 +61,9 @@ void showPath(vector<Vehicle> v){
     }
     for(Vehicle v2:v){
             paintPath(v2);
+            cout << "Total cost of trip for vehicle " << v2.getID() << ": "<< v2.getCustoPath() << endl;
     }
+    cout << endl;
 
 }
 
@@ -72,7 +75,8 @@ void createClient(Client *add){
     int hora, min;
     char trash;
     cout << "Enter name" << endl;
-    cin >> name;
+    cin.ignore(100,'\n');
+    getline(cin,name);
     add->name = name;
     cout << "Enter NIF" << endl;
     cin >> NIF;
