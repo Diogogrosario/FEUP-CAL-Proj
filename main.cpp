@@ -51,7 +51,7 @@ int main() {
     Client add;
 
     while(choice != 0) {
-        clients.clear();
+        clients.clear();fflush(stdin);
         cout << "1) Show all clientes scheduled for trip at the moment" << endl;
         cout << "2) Show path for all clientes" << endl;
         cout << "3) Add client" << endl;

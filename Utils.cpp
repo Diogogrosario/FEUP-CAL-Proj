@@ -49,7 +49,7 @@ void showClientes(vector <Vehicle> v){
     for(Vehicle v2: v){
         for(Client c: v2.getClients()){
             if(c.name != "Admin")
-                cout << "Client " << c.name << " travelling to node " << c.nodeDestino << endl;
+                cout << "Client " << c.name << " travelling to node " << c.nodeDestino << endl<<endl;
         }
     }
 }
@@ -81,6 +81,7 @@ void createClient(Client *add){
     cin >> dest;
     add->nodeDestino = dest;
     cout << "Enter arrival time (Ex: 15:30)" << endl;
+    cin.ignore(100,'\n');
     getline(cin,line);
     istringstream linestream(line);
     linestream >> hora;
