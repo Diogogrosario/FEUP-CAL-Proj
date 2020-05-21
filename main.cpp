@@ -78,6 +78,7 @@ int main() {
                     v.capacity = 6;
                     v.addClient(admin);
                     v.path.push_back(Node(admin.nodeDestino,0,0));
+                    v.best.clear();
                 }
                 assignClients(vehicles,clients);
         }

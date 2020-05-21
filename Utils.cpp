@@ -75,8 +75,8 @@ void showClientes(vector <Vehicle> v){
 }
 
 void showPath(vector<Vehicle> v){
-    for(auto v:graph.getVertexSet()){
-        gv->setVertexColor(v->getInfo().getID(),BLUE);
+    for(auto vertex:graph.getVertexSet()){
+        gv->setVertexColor(vertex->getInfo().getID(),BLUE);
     }
     for(Vehicle v2:v){
             paintPath(v2);
