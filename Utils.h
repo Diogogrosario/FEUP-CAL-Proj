@@ -13,4 +13,6 @@ void showClientes(vector <Vehicle> v);
 
 void showPath(vector<Vehicle> v);
 
+void createClient(Client *add);
+
 #endif //FICHAJUNG_UTILS_H

@@ -6,6 +6,7 @@
 #include "readFile.h"
 #include <iostream>
 #include <graphviewer.h>
+#include <sstream>
 
 
 extern GraphViewer * gv;
@@ -61,4 +62,30 @@ void showPath(vector<Vehicle> v){
             paintPath(v2);
     }
 
+}
+
+void createClient(Client *add){
+    string name;
+    int NIF;
+    int dest;
+    string line;
+    int hora, min;
+    char trash;
+    cout << "Enter name" << endl;
+    cin >> name;
+    add->name = name;
+    cout << "Enter NIF" << endl;
+    cin >> NIF;
+    add->NIF = NIF;
+    cout << "Enter destination node (Between 0 and 931 and != 230)" << endl;
+    cin >> dest;
+    add->nodeDestino = dest;
+    cout << "Enter arrival time (Ex: 15:30)" << endl;
+    getline(cin,line);
+    istringstream linestream(line);
+    linestream >> hora;
+    linestream >> trash;
+    linestream >> min;
+    add->arrival = Time(hora,min);
+    return;
 }

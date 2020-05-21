@@ -48,8 +48,10 @@ int main() {
 
     cout << "Welcome to PortoCityTransfers" << endl << endl;
 
-    while(choice != 0) {
+    Client add;
 
+    while(choice != 0) {
+        clients.clear();
         cout << "1) Show all clientes scheduled for trip at the moment" << endl;
         cout << "2) Show path for all clientes" << endl;
         cout << "3) Add client" << endl;
@@ -65,11 +67,10 @@ int main() {
                 showClientes(vehicles);
                 break;
             case 3:
-                cout << "NOT IMPLEMENTED";
+                createClient(&add);
+                clients.push_back(add);
+                assignClients(vehicles,clients);
                 break;
-
-
-
         }
 
     }
