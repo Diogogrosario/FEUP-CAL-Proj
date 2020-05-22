@@ -20,7 +20,7 @@ vector<Node> salesmanPath(vector<Client>clients){
     Vertex<Node> *n;
     vector<int>salesman;
 
-
+    //BUILDS AN AUX GRAPH WITH JUST CLIENT NODES AND START NODE, WITH ALL DISTANCES FROM V1 TO Vn
     for(Client c:clients){
         n = graph.findVertex(Node(c.nodeDestino,0,0));
         aux.addVertex(Node(n->getInfo().getID(),n->getInfo().getX(),n->getInfo().getY()));
@@ -40,8 +40,12 @@ vector<Node> salesmanPath(vector<Client>clients){
         }
     }
     //FINISHED BUILDING AUX GRAPH
+
+
+    //FLOYD WARSHALL SHORTEST PATH FOR SALESMAN, DISTANCE MATRIX NECESSARY SO FLOYD WARSHALL BUILDS IT
     aux.floydWarshallShortestPath();
 
+    //SALESMAN PATH
     for(int i = 0;i<aux.getDist().at(0).size();i++){
         if(i != 0){
             salesman.push_back(i);
@@ -88,7 +92,9 @@ vector<Node> bestPath(vector<Client>clients){
     vector<Node>res;
     vector<Node> orderToVisit;
     vector<Node> aux;
-    orderToVisit = salesmanPath(clients);
+    orderToVisit = salesmanPath(clients); //TRAVELING SALESMAN PATH, SO IT GOES THROUGH ALL CLIENTS CURRENTLY IN VEHICLE
+
+    //GETS FULL PATH, NOT JUST CLIENT NODES LIKE SALESMAN DOES
     for(int i = 0;i<orderToVisit.size()-1;i++){
         aux.clear();
         Node n1(orderToVisit.at(i).getID(),orderToVisit.at(i).getX(),orderToVisit.at(i).getY());

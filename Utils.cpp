@@ -17,6 +17,8 @@ using  namespace std;
 void assignClients(vector<Vehicle>& vehicles, vector<Client>& clients) {
     double minCost = INT64_MAX;
     int minTime = INT16_MAX;
+
+    //GROUPING ALL CLIENTS WITH 1 HOUR DIFFERENCE
     for(Client &c:clients){
         if(!c.delivered) {
             if (c.arrival.hours * 60 + c.arrival.minutes < minTime) {
@@ -38,8 +40,7 @@ void assignClients(vector<Vehicle>& vehicles, vector<Client>& clients) {
         if(!c.delivered && c.needsDelivery) {
             for (v = vehicles.begin(); v != vehicles.end(); v++) {
                 if (v->getClients().size() < v->getCapacity()) {
-                    double currentCost = v->testAddClient(c);
-                    //cout << "vehicle at " << v->getID() << " costs aditional " << currentCost << endl << endl;
+                    double currentCost = v->testAddClient(c); //TESTS ADDING CLIENT TO THE VEHICLE, TO SEE WHICH ONE IS THE MINIMUM COST
                     if (currentCost < minCost) {
                         minCost = currentCost;
                         index = counter;

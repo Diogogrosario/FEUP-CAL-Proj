@@ -57,7 +57,7 @@ double Vehicle::testAddClient(Client client) {
    //cout << "current cost" << CustoPath << endl;
 
 
-    best = bestPath(aux);
+    best = bestPath(aux); //GETS BEST PATH
 
     return pathCost(best) - CustoPath;
 }

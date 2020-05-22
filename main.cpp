@@ -17,6 +17,10 @@ int main() {
     initGraph();
 	readNodeFile("../nodes.txt");
 	readEdgeFile("../edges.txt");
+	string ret = "not strongly connected";
+	if(graph.isStronglyConnected())
+	    ret = "strongly connected";
+	cout << "Graph is " << ret << endl;
 
 	vector<Client> clients;
     Client c1("José",123456789,215,Time(15,30));
@@ -42,7 +46,7 @@ int main() {
     vehicles.push_back(v1),
     vehicles.push_back(v2);
 
-    assignClients(vehicles, clients);
+    assignClients(vehicles, clients); //main algorithm
 
     int choice = -1;
 

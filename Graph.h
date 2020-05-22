@@ -108,6 +108,8 @@ class Graph {
 
 public:
 	Vertex<T> *findVertex(const T &in) const;
+    void dfsVisit(Vertex<T> *v,  vector<T> & res) const;
+    vector<T> dfs() const;
 	bool addVertex(const T &in);
 	bool addEdge(const T &sourc, const T &dest, double w);
 	int getNumVertex() const;
@@ -126,6 +128,8 @@ public:
 	// Fp05 - all pairs
 	void floydWarshallShortestPath();   //TODO...
 	vector<T> getfloydWarshallPath(const T &origin, const T &dest) const;   //TODO...
+
+    bool isStronglyConnected();
 
 };
 
@@ -389,6 +393,78 @@ template<class T>
 vector<vector<Vertex<T> *>> Graph<T>::getPred() {
     return pred;
 }
+
+/*
+ * Performs a depth-first search (dfs) in a graph (this).
+ * Returns a vector with the contents of the vertices by dfs order.
+ * Follows the algorithm described in theoretical classes.
+ */
+template <class T>
+vector<T> Graph<T>::dfs() const {
+    // TODO (7 lines)
+    vector<T> res;
+    auto it = vertexSet.begin();
+
+    //None was visited prior to this
+
+    while(it != vertexSet.end()){
+        (*it)->visited = false;
+        it++;
+    }
+    it = vertexSet.begin();
+
+    while(it != vertexSet.end()){
+        if((*it)->visited == false){
+            dfsVisit((*it),res);
+        }
+        it++;
+    }
+
+    return res;
+}
+
+/*
+ * Auxiliary function that visits a vertex (v) and its adjacent not yet visited, recursively.
+ * Updates a parameter with the list of visited node contents.
+ */
+template <class T>
+void Graph<T>::dfsVisit(Vertex<T> *v, vector<T> & res) const {
+    auto it = v->adj.begin();
+    v->visited = true;
+    res.push_back(v->info);
+    while(it != v->adj.end()){
+        if((*it).dest->visited == false){
+            dfsVisit((*it).dest,res);
+        }
+        it++;
+    }
+}
+
+template<class T>
+bool Graph<T>::isStronglyConnected() {
+    vector<T> dfs1 = dfs();
+    vector<T> dfs2;
+
+    Graph<T> aux;
+
+    for(int i = 0;i<getVertexSet().size();i++){
+        for (size_t j = 0; j < getVertexSet().at(i)->adj.size(); j++) {
+            aux.addVertex(getVertexSet().at(i)->getInfo());
+            aux.addVertex(getVertexSet().at(i)->adj.at(j).dest->info);
+            aux.addEdge(getVertexSet().at(i)->adj.at(j).dest->info,
+                       getVertexSet().at(i)->info, getVertexSet().at(i)->adj.at(j).weight);
+        }
+    }
+
+    dfs2 = aux.dfs();
+
+    if(dfs1.size() != getVertexSet().size())
+        return false;
+    if(dfs2.size() != getVertexSet().size())
+        return false;
+    return true;
+}
+
 
 
 #endif /* GRAPH_H_ */
