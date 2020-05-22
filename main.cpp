@@ -74,6 +74,8 @@ int main() {
                 createClient(&add);
                 clients.push_back(add);
                 break;
+            case 0:
+                gv->closeWindow();
             case 4:
                 for(Vehicle &v: vehicles){
                     v.clients.clear();
@@ -87,6 +89,7 @@ int main() {
                 assignClients(vehicles,clients);
                 break;
         }
+
 
     }
 
