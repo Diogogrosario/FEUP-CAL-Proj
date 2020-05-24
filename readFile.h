@@ -9,14 +9,12 @@
 #include "Node.h"
 #include "Vehicle.h"
 
-void readEdgeFile(string name);
+void readEdgeFile(const string& name);
 
-void readNodeFile(string name);
+void readNodeFile(const string& name);
 
 void initGraph();
 
 void paintPath(Vehicle v);
-
-double dist(Node n1, Node n2);
 
 #endif //FICHAJUNG_READFILE_H

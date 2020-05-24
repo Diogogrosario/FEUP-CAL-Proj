@@ -1,12 +1,9 @@
-#include <cstdio>
 #include <graphviewer.h>
-#include <chrono>
 #include <fstream>
 #include "readFile.h"
 #include "Node.h"
 #include "Graph.h"
 #include "Client.h"
-#include "Algorithms.h"
 #include "Vehicle.h"
 #include "Utils.h"
 
@@ -15,8 +12,6 @@ extern GraphViewer * gv;
 extern Graph<Node> graph;
 
 int main() {
-    std::fstream myfile;
-    myfile.open("../vehicles.csv",std::ios_base::app);
 
     initGraph();
 	readNodeFile("../nodes.txt");
@@ -56,14 +51,9 @@ int main() {
     vehicles.push_back(v1),
     vehicles.push_back(v2);
 
-    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
     assignClients(vehicles, clients); //main algorithm
 
-    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-
-    myfile << vehicles.size() << "," << chrono::duration_cast<chrono::milliseconds>(end-begin).count() << "\n";
-    myfile.close();
 
     int choice = -1;
 
@@ -81,6 +71,8 @@ int main() {
         cin >> choice;
 
         switch(choice){
+            default:
+                break;
             case 2:
                 showPath(vehicles);
                 break;
@@ -98,7 +90,7 @@ int main() {
                     v.path.clear();
                     v.capacity = 6;
                     v.clients.push_back(admin);
-                    v.path.push_back(Node(admin.nodeDestino,0,0));
+                    v.path.emplace_back(admin.nodeDestino,0,0);
                     v.best.clear();
                 }
                 assignClients(vehicles,clients);

@@ -14,8 +14,8 @@ public:
     Client();
     Client(string name, int NIF, int nodeDestino, Time arrival);
     string name;
-    int NIF;
-    int nodeDestino;
+    int NIF{};
+    int nodeDestino{};
     Time arrival;
     bool delivered = false;
     bool needsDelivery = false;

@@ -6,14 +6,13 @@
 #include "Algorithms.h"
 #include <algorithm>
 #include <graphviewer.h>
-#include "readFile.h"
 
 
 extern Graph<Node> graph;
 
 extern GraphViewer * gv;
 
-vector<Node> salesmanPath(vector<Client>clients){
+vector<Node> salesmanPath(vector<Client>&clients){
     vector<Node> res;
     vector<Node> auxiliaryRes;
     Graph<Node> aux;
@@ -21,7 +20,7 @@ vector<Node> salesmanPath(vector<Client>clients){
     vector<int>salesman;
 
     //BUILDS AN AUX GRAPH WITH JUST CLIENT NODES AND START NODE, WITH ALL DISTANCES FROM V1 TO Vn
-    for(Client c:clients){
+    for(Client &c:clients){
         n = graph.findVertex(Node(c.nodeDestino,0,0));
         aux.addVertex(Node(n->getInfo().getID(),n->getInfo().getX(),n->getInfo().getY()));
     }
@@ -32,7 +31,7 @@ vector<Node> salesmanPath(vector<Client>clients){
                 Node n1(ver->getInfo().getID(),ver->getInfo().getX(),ver->getInfo().getY());
                 Node n2(ver2->getInfo().getID(),ver2->getInfo().getX(),ver2->getInfo().getY());
                 graph.dijkstraShortestPath(n1);
-                int dist = graph.getVertexSet().at(n2.getID())->getDist();
+                double dist = graph.getVertexSet().at(n2.getID())->getDist();
                 //int dist = graph.getDist().at(n1.getID()).at(n2.getID());
                 //if(dist != INT64_MAX)
                     aux.addEdge(n1,n2,dist);
@@ -57,12 +56,12 @@ vector<Node> salesmanPath(vector<Client>clients){
         int path_cost = 0;
         auxiliaryRes.clear();
         int k = index;
-        for(int i = 0;i<salesman.size();i++){
-            if(aux.getDist().at(k).at(salesman.at(i)) != INT64_MAX){
-                path_cost += aux.getDist().at(k).at(salesman.at(i));
-                auxiliaryRes.push_back(aux.getPred().at(k).at(salesman.at(i))->getInfo());
+        for(int i : salesman){
+            if(aux.getDist().at(k).at(i) != INT64_MAX){
+                path_cost += aux.getDist().at(k).at(i);
+                auxiliaryRes.push_back(aux.getPred().at(k).at(i)->getInfo());
             }
-            k= salesman.at(i);
+            k= i;
         }
         if(aux.getDist().at(k).at(index) != INT64_MAX) {
             path_cost += aux.getDist().at(k).at(index);
@@ -88,14 +87,14 @@ vector<Node> salesmanPath(vector<Client>clients){
 
 
 
-vector<Node> bestPath(vector<Client>clients){
+vector<Node> bestPath(vector<Client>&clients){
     vector<Node>res;
     vector<Node> orderToVisit;
     vector<Node> aux;
     orderToVisit = salesmanPath(clients); //TRAVELING SALESMAN PATH, SO IT GOES THROUGH ALL CLIENTS CURRENTLY IN VEHICLE
 
     //GETS FULL PATH, NOT JUST CLIENT NODES LIKE SALESMAN DOES
-    for(int i = 0;i<orderToVisit.size()-1;i++){
+    for(unsigned long i = 0;i<orderToVisit.size()-1;i++){
         aux.clear();
         Node n1(orderToVisit.at(i).getID(),orderToVisit.at(i).getX(),orderToVisit.at(i).getY());
         Node n2(orderToVisit.at(i+1).getID(),orderToVisit.at(i+1).getX(),orderToVisit.at(i+1).getY());
@@ -112,8 +111,8 @@ vector<Node> bestPath(vector<Client>clients){
 
 
 double pathCost(vector<Node> best){
-    double cost;
-    for(int i = 0;i<best.size()-1;i++){
+    double cost = 0;
+    for(size_t i = 0;i<best.size()-1;i++){
         graph.dijkstraShortestPath(best.at(i));
 
         cost += graph.getVertexSet().at(best.at(i+1).getID())->getDist();

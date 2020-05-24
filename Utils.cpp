@@ -65,17 +65,17 @@ void assignClients(vector<Vehicle>& vehicles, vector<Client>& clients) {
 
 }
 
-void showClientes(vector <Vehicle> v){
+void showClientes(const vector <Vehicle>& v){
     for(Vehicle v2: v){
-        for(Client c: v2.getClients()){
+        for(const Client& c: v2.getClients()){
             if(c.name != "Admin")
-                cout << "Client " << c.name << " travelling to node " << c.nodeDestino << endl;
+                cout << "Client " << c.name  << " with NIF " << c.NIF << " travelling to node " << c.nodeDestino << endl;
         }
     }
     cout << endl;
 }
 
-void showPath(vector<Vehicle> v){
+void showPath(const vector<Vehicle>& v){
     for(auto vertex:graph.getVertexSet()){
         gv->setVertexColor(vertex->getInfo().getID(),BLUE);
     }
@@ -112,5 +112,4 @@ void createClient(Client *add){
     linestream >> trash;
     linestream >> min;
     add->arrival = Time(hora,min);
-    return;
 }

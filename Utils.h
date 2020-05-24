@@ -9,9 +9,9 @@
 
 void assignClients(vector<Vehicle>& vehicles, vector<Client>& clients);
 
-void showClientes(vector <Vehicle> v);
+void showClientes(const vector <Vehicle>& v);
 
-void showPath(vector<Vehicle> v);
+void showPath(const vector<Vehicle>& v);
 
 void createClient(Client *add);
 

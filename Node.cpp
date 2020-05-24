@@ -22,10 +22,8 @@ int Node::getID() const{
     return id;
 }
 
-Node::Node() {
+Node::Node() = default;
 
-}
-
-bool Node::operator==(Node n2) const {
+bool Node::operator==(const Node& n2) const {
     return (this->id == n2.getID());
 }

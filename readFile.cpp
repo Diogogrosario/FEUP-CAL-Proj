@@ -14,9 +14,7 @@
 GraphViewer * gv;
 Graph<Node> graph;
 
-double dist(Node n1,Node n2);
-
-void readEdgeFile(string name)
+void readEdgeFile(const string& name)
 {
     ifstream edgeFile;
     static int id = 0;
@@ -25,7 +23,7 @@ void readEdgeFile(string name)
 
     while (!edgeFile.eof()) {
         string line;
-        int id, n1, n2;
+        int n1, n2;
         double weight;
 
         getline(edgeFile, line, '(');
@@ -48,11 +46,10 @@ void readEdgeFile(string name)
         id++;
     }
     edgeFile.close();
-    return;
 }
 
 
-void readNodeFile(string name){
+void readNodeFile(const string &name){
 
     bool hasOffset = false;
     ifstream nodeFile;
@@ -89,7 +86,6 @@ void readNodeFile(string name){
 
     gv->rearrange();
     nodeFile.close();
-    return;
 
 }
 
@@ -101,22 +97,12 @@ void initGraph(){
 }
 
 
-
-double dist(Node n1, Node n2){
-    double distX = 0;
-    double distY = 0;
-    distX = pow(n1.getX()-n2.getX(),2);
-    distY = pow(n1.getY()-n2.getY(),2);
-    return sqrt(distX+distY);
-}
-
-
 void paintPath(Vehicle v){
 
-    for (Node n:v.getPath()) {
+    for (const Node& n:v.getPath()) {
         gv->setVertexColor(n.getID(), v.getColor());
     }
-    for(Client c:v.getClients()){
+    for(const Client& c:v.getClients()){
         gv->setVertexColor(c.nodeDestino,v.getColorVertex());
     }
     gv->rearrange();

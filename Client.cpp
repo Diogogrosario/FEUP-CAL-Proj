@@ -4,12 +4,12 @@
 
 #include "Client.h"
 
-Client::Client() {
+#include <utility>
 
-}
+Client::Client() = default;
 
 Client::Client(string name, int NIF, int nodeDestino, Time arrival) {
-    this->name = name;
+    this->name = std::move(name);
     this->NIF = NIF;
     this->nodeDestino = nodeDestino;
     this->arrival = arrival;

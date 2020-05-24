@@ -9,7 +9,7 @@ using namespace std;
 
 
 class Node {
-    int id;
+    int id{};
     vector<int> coords;
 
     public:
@@ -18,7 +18,7 @@ class Node {
         int getX() const ;
         int getY() const ;
         int getID() const ;
-        bool operator==(Node n2)const;
+        bool operator==(const Node& n2)const;
 };
 
 
